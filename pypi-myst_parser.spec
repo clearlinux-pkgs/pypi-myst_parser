@@ -4,7 +4,7 @@
 #
 Name     : pypi-myst_parser
 Version  : 0.17.2
-Release  : 13
+Release  : 14
 URL      : https://files.pythonhosted.org/packages/3d/5f/798bf04c9ee4a638546c19b1f4ff8234424cf7e05830dda46144be230daf/myst-parser-0.17.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/3d/5f/798bf04c9ee4a638546c19b1f4ff8234424cf7e05830dda46144be230daf/myst-parser-0.17.2.tar.gz
 Summary  : An extended commonmark compliant parser, with bridges to docutils & sphinx.
@@ -78,13 +78,16 @@ python3 components for the pypi-myst_parser package.
 %prep
 %setup -q -n myst-parser-0.17.2
 cd %{_builddir}/myst-parser-0.17.2
+pushd ..
+cp -a myst-parser-0.17.2 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1650294694
+export SOURCE_DATE_EPOCH=1653345574
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -98,6 +101,18 @@ pypi-dep-fix.py . docutils
 pypi-dep-fix.py . markdown-it-py
 pypi-dep-fix.py . mdit-py-plugins
 python3 -m build --wheel --skip-dependency-check --no-isolation
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+pypi-dep-fix.py . docutils
+pypi-dep-fix.py . markdown-it-py
+pypi-dep-fix.py . mdit-py-plugins
+python3 -m build --wheel --skip-dependency-check --no-isolation
+
+popd
 
 %install
 export MAKEFLAGS=%{?_smp_mflags}
@@ -111,6 +126,15 @@ pypi-dep-fix.py %{buildroot} mdit-py-plugins
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+pushd ../buildavx2/
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
+pip install --root=%{buildroot}-v3 --no-deps --ignore-installed dist/*.whl
+popd
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
