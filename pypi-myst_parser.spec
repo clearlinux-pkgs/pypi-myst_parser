@@ -4,7 +4,7 @@
 #
 Name     : pypi-myst_parser
 Version  : 0.18.0
-Release  : 15
+Release  : 16
 URL      : https://files.pythonhosted.org/packages/20/83/5fbd7cf01366ab41e765c5fbb85db8fb5b83a9f834274b3c5fbebca24bdd/myst-parser-0.18.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/20/83/5fbd7cf01366ab41e765c5fbb85db8fb5b83a9f834274b3c5fbebca24bdd/myst-parser-0.18.0.tar.gz
 Summary  : An extended commonmark compliant parser, with bridges to docutils & sphinx.
@@ -87,7 +87,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1654612207
+export SOURCE_DATE_EPOCH=1656389909
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -134,7 +134,7 @@ export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
 pip install --root=%{buildroot}-v3 --no-deps --ignore-installed dist/*.whl
 popd
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
