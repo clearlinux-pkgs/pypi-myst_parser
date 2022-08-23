@@ -4,7 +4,7 @@
 #
 Name     : pypi-myst_parser
 Version  : 0.18.0
-Release  : 19
+Release  : 20
 URL      : https://files.pythonhosted.org/packages/20/83/5fbd7cf01366ab41e765c5fbb85db8fb5b83a9f834274b3c5fbebca24bdd/myst-parser-0.18.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/20/83/5fbd7cf01366ab41e765c5fbb85db8fb5b83a9f834274b3c5fbebca24bdd/myst-parser-0.18.0.tar.gz
 Summary  : An extended commonmark compliant parser, with bridges to docutils & sphinx.
