@@ -4,7 +4,7 @@
 #
 Name     : pypi-myst_parser
 Version  : 0.18.1
-Release  : 24
+Release  : 25
 URL      : https://files.pythonhosted.org/packages/68/13/91438d3b835a022fcacd858a7106d4813cfccf98b1fd9a6196cfa2c859df/myst-parser-0.18.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/68/13/91438d3b835a022fcacd858a7106d4813cfccf98b1fd9a6196cfa2c859df/myst-parser-0.18.1.tar.gz
 Summary  : An extended commonmark compliant parser, with bridges to docutils & sphinx.
@@ -90,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1672291598
+export SOURCE_DATE_EPOCH=1672420014
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -103,6 +103,7 @@ export MAKEFLAGS=%{?_smp_mflags}
 pypi-dep-fix.py . docutils
 pypi-dep-fix.py . markdown-it-py
 pypi-dep-fix.py . mdit-py-plugins
+pypi-dep-fix.py . sphinx
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/
 export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
@@ -113,6 +114,7 @@ export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
 pypi-dep-fix.py . docutils
 pypi-dep-fix.py . markdown-it-py
 pypi-dep-fix.py . mdit-py-plugins
+pypi-dep-fix.py . sphinx
 python3 -m build --wheel --skip-dependency-check --no-isolation
 
 popd
@@ -126,6 +128,7 @@ pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
 pypi-dep-fix.py %{buildroot} docutils
 pypi-dep-fix.py %{buildroot} markdown-it-py
 pypi-dep-fix.py %{buildroot} mdit-py-plugins
+pypi-dep-fix.py %{buildroot} sphinx
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
