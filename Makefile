@@ -1,5 +1,5 @@
 PKG_NAME := pypi-myst_parser
-URL = https://files.pythonhosted.org/packages/56/c8/ee4993815c49fd8da2d488c22f855d8b9ed2fe01309b7ff659c40d65ee18/myst-parser-0.19.1.tar.gz
+URL = https://files.pythonhosted.org/packages/5f/69/fbddb50198c6b0901a981e72ae30f1b7769d2dfac88071f7df41c946d133/myst-parser-1.0.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
