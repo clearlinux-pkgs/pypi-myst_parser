@@ -6,10 +6,10 @@
 # autospec commit: 5905be9
 #
 Name     : pypi-myst_parser
-Version  : 3.0.0
-Release  : 33
-URL      : https://files.pythonhosted.org/packages/24/e4/1fcabee98c532c1440d1df9843dae99c3eec975e126723224415f8782c00/myst_parser-3.0.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/24/e4/1fcabee98c532c1440d1df9843dae99c3eec975e126723224415f8782c00/myst_parser-3.0.0.tar.gz
+Version  : 3.0.1
+Release  : 34
+URL      : https://files.pythonhosted.org/packages/49/64/e2f13dac02f599980798c01156393b781aec983b52a6e4057ee58f07c43a/myst_parser-3.0.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/49/64/e2f13dac02f599980798c01156393b781aec983b52a6e4057ee58f07c43a/myst_parser-3.0.1.tar.gz
 Summary  : An extended [CommonMark](https://spec.commonmark.org/) compliant parser,
 Group    : Development/Tools
 License  : MIT
@@ -81,10 +81,10 @@ python3 components for the pypi-myst_parser package.
 
 
 %prep
-%setup -q -n myst_parser-3.0.0
-cd %{_builddir}/myst_parser-3.0.0
+%setup -q -n myst_parser-3.0.1
+cd %{_builddir}/myst_parser-3.0.1
 pushd ..
-cp -a myst_parser-3.0.0 buildavx2
+cp -a myst_parser-3.0.1 buildavx2
 popd
 
 %build
@@ -92,7 +92,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1713908313
+export SOURCE_DATE_EPOCH=1714403032
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
