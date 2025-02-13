@@ -7,7 +7,7 @@
 #
 Name     : pypi-myst_parser
 Version  : 4.0.1
-Release  : 37
+Release  : 38
 URL      : https://files.pythonhosted.org/packages/66/a5/9626ba4f73555b3735ad86247a8077d4603aa8628537687c839ab08bfe44/myst_parser-4.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/66/a5/9626ba4f73555b3735ad86247a8077d4603aa8628537687c839ab08bfe44/myst_parser-4.0.1.tar.gz
 Summary  : An extended [CommonMark](https://spec.commonmark.org/) compliant parser,
